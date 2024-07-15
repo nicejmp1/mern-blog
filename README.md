@@ -19,3 +19,12 @@ npm i react-icons
 npm install -D tailwindcss postcss autoprefixer
 npx tailwindcss init -p
 ````
+
+````bash
+git init 
+git add .
+git commit -m "first"
+git remote add origin https://github.com/nicejmp1/mern-blog.git
+git branch -M main
+git push -u origin main
+````

@@ -5,7 +5,7 @@ import { MdOutlineDarkMode } from "react-icons/md";
 
 export default function Header() {
     return (
-        <header id="header" className="flex justify-between max-w-7xl mx-auto items-center py-6 px-4 border-b">
+        <header id="header" className="flex justify-between max-w-7xl mx-auto items-center py-6 px-4 border-b font-ibm font-medium">
             <h1>
                 <Link to={"/"}>
                     logo

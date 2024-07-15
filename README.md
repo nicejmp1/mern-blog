@@ -5,6 +5,7 @@ MERN 스택은 MongoDB, Express.js, React, node.js의 약자로, 풀스택 자�
 
 vite(https://ko.vitejs.dev/guide/)
 tailwindcss(https://tailwindcss.com/)
+mongodb(https://cloud.mongodb.com/)
 
 
 ````bash
@@ -35,4 +36,6 @@ npm init -y
 npm i express
 npm i nodemon
 npm i mongoose
+npm i dotenv
+
 ````

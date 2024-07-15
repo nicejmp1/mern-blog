@@ -8,19 +8,16 @@ tailwindcss(https://tailwindcss.com/)
 
 
 ````bash
+# 클라이언트 세팅 부분 (vite를 이용함)
 npm create vite@latest
 cd client
 npm install
 npm run dev 
 npm i react-router-dom
 npm i react-icons
-
-````
-
-
-````bash
 npm install -D tailwindcss postcss autoprefixer
 npx tailwindcss init -p
+
 ````
 
 ````bash
@@ -30,4 +27,12 @@ git commit -m "first"
 git remote add origin https://github.com/nicejmp1/mern-blog.git
 git branch -M main
 git push -u origin main
+
+````
+
+````bash
+npm init -y
+npm i express
+npm i nodemon
+npm i mongoose
 ````

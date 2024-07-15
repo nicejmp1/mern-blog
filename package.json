@@ -1,0 +1,19 @@
+{
+  "name": "mern-blog",
+  "version": "1.0.0",
+  "description": "MERN 스택은 MongoDB, Express.js, React, node.js의 약자로, 풀스택 자바스크립트 애플리케이션 개발을 위한 기술 스택입니다. 각 구성 요소는 특정한 역할을 하며, 함께 사용하면 서버 사이드와 클라이언트사이드를 모두 자바스크립트로 작업하였습니다.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon api/index.js ",
+    "start" : "node api/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "mongoose": "^8.5.1",
+    "nodemon": "^3.1.4"
+  }
+}

@@ -29,7 +29,7 @@ export default function Header() {
             </nav>
             <div className="flex items-center justify-center">
                 <div id="util" className="flex gap-4 pr-5 items-center">
-                    <button className="text-xl cursor-pointer"><MdOutlineMenu /></button> 
+                    <button className="text-xl cursor-pointer"><MdOutlineMenu /></button>
                     <button className="text-xl cursor-pointer"><MdOutlineDarkMode /></button>
                     <button className="text-xl cursor-pointer"><IoSearch /></button>
                 </div>

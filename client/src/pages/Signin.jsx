@@ -1,69 +1,128 @@
 import { FaRegCheckCircle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SiNaver } from "react-icons/si";
 import { RiKakaoTalkFill } from "react-icons/ri";
 import { FcGoogle } from "react-icons/fc";
 import { FaApple } from "react-icons/fa";
-
+import { useState } from "react";
+import { signInStart, signInSuccess, signInFailure } from "../redux/user/userSlice"
+import { useDispatch, useSelector } from "react-redux";
 
 export default function SignIn() {
+    const [formData, setFormData] = useState({
+        userId: '',
+        password: ''
+    });
+    const { loading, error: errorMessage } = useSelector((state) => state.user);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const handleChange = (e) => {
+        const { id, value } = e.target;
+        setFormData({
+            ...formData, [id]: value.trim()
+        });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        if (!formData.userId || !formData.password) {
+            dispatch(signInFailure("모든 영역을 채워주세요!"))
+        }
+
+        try {
+            dispatch(signInStart());
+
+            const res = await fetch('/api/auth/signin', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData),
+            });
+            const data = await res.json();
+
+            if (!res.ok) {
+                // return setErrorMessage(data.message || "로그인에 실패했습니다.");
+                dispatch(signInFailure(data.message))
+            }
+
+            if (res.ok) {
+                dispatch(signInSuccess(data));
+                navigate("/");
+            }
+        } catch (error) {
+            // setErrorMessage("로그인 중 오류가 발생했습니다. 다시 시도해주세요.");
+            // setLoading(false);
+            dispatch(signInFailure(error.message))
+        }
+    };
+
     return (
-        <section id="login" className="sign">
-                <div className="sign__info">
-                    <div className="sign__title">
-                        <h1 className="pb-2s uppercase font-bold text-4xl   pt-10">Login</h1>
-                        <p>로그인을 하시면 다양한 서비스를 누리실 수 있습니다.</p>
+        <section id="login" className="bg-gray-50 min-h-screen flex justify-center items-center">
+            <div className="max-w-lg mx-auto p-8 bg-white rounded-lg shadow-lg">
+                <div className="text-4xl font-bold uppercase pb-2 pt-10 text-center">Login</div>
+                <p className="text-gray-600 text-center">로그인을 하시면 다양한 서비스를 누리실 수 있습니다.</p>
+                <form className="mt-10" onSubmit={handleSubmit}>
+                    <div className="space-y-6">
+                        {/* 아이디 입력 필드 */}
+                        <div className="relative">
+                            <input
+                                type="text"
+                                id="userId"
+                                placeholder=" "
+                                value={formData.userId}
+                                onChange={handleChange}
+                                required
+                                className="w-full px-4 py-3 border rounded-md focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 peer"
+                            />
+                            <label htmlFor="userId" className="absolute left-4 top-0 text-gray-500 text-xs transition-all duration-200 ease-in-out peer-focus:top-[-12px] peer-placeholder-shown:top-1/3">아이디</label>
+                        </div>
+                        {/* 비밀번호 입력 필드 */}
+                        <div className="relative">
+                            <input
+                                type="password"
+                                id="password"
+                                placeholder=" "
+                                value={formData.password}
+                                onChange={handleChange}
+                                required
+                                className="w-full px-4 py-3 border rounded-md focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 peer"
+                            />
+                            <label htmlFor="password" className="absolute left-4 top-0 text-gray-500 text-xs transition-all duration-200 ease-in-out peer-focus:top-[-12px] peer-placeholder-shown:top-1/3">패스워드</label>
+                        </div>
                     </div>
-                    <form>
-                        <fieldset>
-                            <legend className='blind'>로그인 영역</legend>
-                            <div className="flex flex-col justify-center items-center   pt-12">
-                                <label htmlFor="youId" className="blind"></label>
-                                <input type="text"
-                                    placeholder="아이디"
-                                    className="input_box"
-                                />
-                                <input type="password"
-                                        placeholder="패스워드"
-                                         className="input_box mt-2"
-                                />
-                  
-                            </div>
-                            <div className="flex pt-4 justify-between items-center">
-                                <button className="text-lg text-slate-400 flex   items-center justify-center"><FaRegCheckCircle />
-                                    <span className="pl-1 text-sm text-black">아이디 저장</span>
-                                </button>
-
-                                <div className="flex text-sm ">
-                                    <Link to={'/'} className="pr-2">아이디 찾기</   Link>
-                                    <Link to={'/'} className="pl-2">비밀번호    찾기</Link>
-                                </div>
-
-                            </div>
-                            <div>
-                                <button className="w-full text-xl h-12 border-2 mt-10   rounded-md font-ibm">로그인</button>
-                            </div>
-                            <div className="flex items-center justify-center mt-4">
-                            <span className="mr-4">아직 회원이 아니신가요??</   span><Link to={'/signup'}  className="underline-offset-4 underline">회원가입</  Link>
-                            </div>
-
-                            <div 
-                            className="mt-6 border-t-2 pt-4 flex flex-col       items-center  mb-10">
-                                    <span className="mb-4 text-sm">간편 로그인</span>
-
-                                <div className="flex">
-                                    <button 
-                                        className="btn_icon bg-green-600        text-white" >
-                                    <SiNaver /></button>
-                                    <button 
-                                    className="btn_icon bg-yellow-300 text-2xl          text-black"><RiKakaoTalkFill /></button>
-                                    <button className="btn_icon bg-slate-200            text-2xl"><FcGoogle /></button>
-                                    <button className="btn_icon bg-black        text-white     text-xl"><FaApple /></button>
-                                </div>
-                            </div>
-                        </fieldset>
-                    </form>
-                </div>
+                    <div className="flex justify-between items-center mt-4">
+                        <button className="flex items-center text-slate-400 hover:text-slate-500">
+                            <FaRegCheckCircle className="text-lg" /><span className="pl-1 text-sm">아이디 저장</span>
+                        </button>
+                        <div className="text-sm">
+                            <Link to={'/'} className="pr-2 hover:text-blue-500">아이디 찾기</Link>
+                            <Link to={'/'} className="pl-2 hover:text-blue-500">비밀번호 찾기</Link>
+                        </div>
+                    </div>
+                    <button type="submit" className="w-full py-3 mt-6 border-2 border-gray-300 rounded-md text-xl font-medium hover:bg-blue-500 hover:text-white transition-colors">
+                        {loading ? "로딩 중..." : "로그인"}
+                    </button>
+                    {errorMessage && (
+                        <div className="mt-5 p-2 text-red-500 bg-red-200 text-center">
+                            {errorMessage}
+                        </div>
+                    )}
+                    <div className="text-center mt-4">
+                        <span className="text-sm">아직 회원이 아니신가요?? </span>
+                        <Link to={'/signup'} className="underline hover:text-blue-500">회원가입</Link>
+                    </div>
+                    <div className="pt-4 border-t-2 mt-6 mb-10">
+                        <span className="block text-sm text-center mb-4">간편 로그인</span>
+                        <div className="flex justify-center space-x-4">
+                            <button className="p-2 rounded-full bg-green-600 text-xl text-white"><SiNaver /></button>
+                            <button className="p-2 rounded-full bg-yellow-300 text-2xl text-black"><RiKakaoTalkFill /></button>
+                            <button className="p-2 rounded-full bg-slate-200 text-2xl"><FcGoogle /></button>
+                            <button className="p-2 rounded-full bg-black text-white text-2xl"><FaApple /></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </section>
     )
 }

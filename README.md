@@ -6,6 +6,7 @@ MERN 스택은 MongoDB, Express.js, React, node.js의 약자로, 풀스택 자�
 vite(https://ko.vitejs.dev/guide/)
 tailwindcss(https://tailwindcss.com/)
 mongodb(https://cloud.mongodb.com/)
+redux (https://ko.redux.js.org/introduction/getting-started/)
 
 
 ````bash
@@ -18,6 +19,9 @@ npm i react-router-dom
 npm i react-icons
 npm install -D tailwindcss postcss autoprefixer
 npx tailwindcss init -p
+
+npm install @reduxjs/toolkit
+npm install react-redux
 
 ````
 
@@ -37,5 +41,6 @@ npm i express
 npm i nodemon
 npm i mongoose
 npm i dotenv
-
+npm i bcrypt
+npm i jsonwebtoken
 ````

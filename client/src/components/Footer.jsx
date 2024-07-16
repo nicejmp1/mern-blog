@@ -1,7 +1,7 @@
 
 export default function Footer() {
     return (
-        <footer className="flex justify-between">
+        <footer className="container">
           <h1>logo</h1>
           <div className="sns_logo">
 

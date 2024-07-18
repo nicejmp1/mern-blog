@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FaRegCheckCircle, FaTimesCircle } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
+import OAuth from "../components/OAuth";
 
 export default function SignUp() {
     const [formData, setFormData] = useState({
@@ -142,7 +143,12 @@ export default function SignUp() {
                 <div className="sign__title">
                     <h1 className="pb-2 uppercase font-bold text-4xl pt-10">회원가입</h1>
                 </div>
+                <div className="pt-4 mt-6 mb-10">
+                    <span className="block text-sm text-center mb-4">SNS로 가입하기</span>
+                    <OAuth />
+                </div>
                 <div className="mt-20 border-t-2 p-4 border-zinc-700">
+
                     <form action="" className="pt-10 pb-10" onSubmit={handleSubmit}>
                         <fieldset>
                             <legend className="blind">회원가입 영역</legend>
@@ -267,6 +273,8 @@ export default function SignUp() {
                                 {errorMessage}
                             </div>
                         )}
+
+
 
                         <div className="text-center mt-12">
                             <span className="text-lg">계정이 있으신가요? <Link className="text-blue-400 underline underline-offset-2" to={"/signin"}>로그인</Link> 하러가기</span>

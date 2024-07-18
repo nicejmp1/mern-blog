@@ -22,7 +22,9 @@ npx tailwindcss init -p
 
 npm install @reduxjs/toolkit
 npm install react-redux
+npm install redux-persist
 
+npm install firebase
 ````
 
 ````bash

@@ -1,12 +1,9 @@
 import { FaRegCheckCircle } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import { SiNaver } from "react-icons/si";
-import { RiKakaoTalkFill } from "react-icons/ri";
-import { FcGoogle } from "react-icons/fc";
-import { FaApple } from "react-icons/fa";
 import { useState } from "react";
 import { signInStart, signInSuccess, signInFailure } from "../redux/user/userSlice"
 import { useDispatch, useSelector } from "react-redux";
+import OAuth from "../components/OAuth";
 
 export default function SignIn() {
     const [formData, setFormData] = useState({
@@ -112,16 +109,11 @@ export default function SignIn() {
                         <span className="text-sm">아직 회원이 아니신가요?? </span>
                         <Link to={'/signup'} className="underline hover:text-blue-500">회원가입</Link>
                     </div>
-                    <div className="pt-4 border-t-2 mt-6 mb-10">
-                        <span className="block text-sm text-center mb-4">간편 로그인</span>
-                        <div className="flex justify-center space-x-4">
-                            <button className="p-2 rounded-full bg-green-600 text-xl text-white"><SiNaver /></button>
-                            <button className="p-2 rounded-full bg-yellow-300 text-2xl text-black"><RiKakaoTalkFill /></button>
-                            <button className="p-2 rounded-full bg-slate-200 text-2xl"><FcGoogle /></button>
-                            <button className="p-2 rounded-full bg-black text-white text-2xl"><FaApple /></button>
-                        </div>
-                    </div>
                 </form>
+                <div className="pt-4 border-t-2 mt-6 mb-10">
+                    <span className="block text-sm text-center mb-4">간편 로그인</span>
+                    <OAuth />
+                </div>
             </div>
         </section>
     )

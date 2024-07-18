@@ -1,14 +1,21 @@
 import { Link } from "react-router-dom"
 import { MdOutlineMenu } from "react-icons/md";
 import { IoSearch } from "react-icons/io5";
+import { FaSun } from "react-icons/fa"
 import { MdOutlineDarkMode } from "react-icons/md";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleTheme } from "../redux/theme/themeSlice"
 
 export default function Header() {
+    const dispatch = useDispatch();
+    const { currentUser } = useSelector((state) => state.user);
+    const { theme } = useSelector((state) => state.theme);
+
     return (
         <header id="header" className="flex justify-between max-w-7xl mx-auto items-center py-6 px-4 border-b font-ibm font-medium">
             <h1>
                 <Link to={"/"}>
-                    logo
+                    My Blog
                 </Link>
             </h1>
             <nav>
@@ -28,12 +35,34 @@ export default function Header() {
                 </ul>
             </nav>
             <div className="flex items-center justify-center">
-                <div id="util" className="flex gap-4 pr-5 items-center">
+                <div id="util" className="flex gap-2 pr-5 items-center">
                     <button className="text-xl cursor-pointer"><MdOutlineMenu /></button>
-                    <button className="text-xl cursor-pointer"><MdOutlineDarkMode /></button>
+
+                    <button
+                        className="text-xl cursor-pointer"
+                        onClick={() => dispatch(toggleTheme())}
+                    >
+                        {theme === "light" ? <FaSun /> : <MdOutlineDarkMode />}
+                    </button>
+
                     <button className="text-xl cursor-pointer"><IoSearch /></button>
                 </div>
-                <Link to={"/signin"}>Login</Link>
+                {currentUser ? (
+                    <>
+                        <img
+                            className="w-10 rounded-full h-10 cursor-pointer"
+                            src={currentUser.profilePicture}
+                        />
+                        <div className="absolute flex flex-col p-4 border top-24 right-5 w-60">
+                            <span>{currentUser.username}</span>
+                            <span>{currentUser.email}</span>
+                            <Link to={'/dashboard?tab=profile'}>profile</Link>
+                            <button className="text-left">Logout</button>
+                        </div>
+                    </>
+                ) : (
+                    <Link to={"/signin"}>Login</Link>
+                )}
             </div>
         </header>
     )

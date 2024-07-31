@@ -51,6 +51,7 @@ npm i mongoose
 npm i dotenv
 npm i bcrypt
 npm i jsonwebtoken
+npm i cookie-parser
 ````
 
 

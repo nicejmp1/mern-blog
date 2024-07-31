@@ -12,7 +12,7 @@ export default function Header() {
     const { theme } = useSelector((state) => state.theme);
 
     return (
-        <header id="header" className="flex justify-between max-w-7xl mx-auto items-center py-6 px-4 border-b font-ibm font-medium">
+        <header id="header" className="flex justify-between max-w-7xl mx-auto items-center py-4 px-4 border-b font-ibm font-medium">
             <h1>
                 <Link to={"/"}>
                     My Blog
@@ -35,7 +35,7 @@ export default function Header() {
                 </ul>
             </nav>
             <div className="flex items-center justify-center">
-                <div id="util" className="flex gap-2 pr-5 items-center">
+                <div id="util" className="flex gap-2 pr-5 items-center relative">
                     <button className="text-xl cursor-pointer"><MdOutlineMenu /></button>
 
                     <button
@@ -53,7 +53,7 @@ export default function Header() {
                             className="w-10 rounded-full h-10 cursor-pointer"
                             src={currentUser.profilePicture}
                         />
-                        <div className="absolute flex flex-col p-4 border top-24 right-5 w-60">
+                        <div className="absolute flex flex-col p-4 border top-20 w-60">
                             <span>{currentUser.username}</span>
                             <span>{currentUser.email}</span>
                             <Link to={'/dashboard?tab=profile'}>profile</Link>

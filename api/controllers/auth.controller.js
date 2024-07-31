@@ -27,6 +27,7 @@ export const signup = async (req, res, next) => {
         userId
     });
 
+
     try {
         await newUser.save();
         res.json({ message: "회원가입이 완료되었습니다." });

@@ -27,6 +27,10 @@ npm install redux-persist
 npm install firebase
 ````
 
+## GIT 연동
+
+모든 파일은 git에 연동하여 사용하였습니다.
+
 ````bash
 git init 
 git add .
@@ -37,6 +41,8 @@ git push -u origin main
 
 ````
 
+## API 설치
+
 ````bash
 npm init -y
 npm i express
@@ -46,3 +52,8 @@ npm i dotenv
 npm i bcrypt
 npm i jsonwebtoken
 ````
+
+
+## 작업 순서
+1. client 레이아웃 작업
+

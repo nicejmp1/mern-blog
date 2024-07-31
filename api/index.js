@@ -12,14 +12,14 @@ app.use(express.json());
 
 
 mongoose.connect(process.env.MONGO_DB_URL).then(() => {
-    console.log("MongoDB connect success")
+    console.log("MongoDB 연결이 되었습니다.")
 }).catch((err) => {
     console.log(err);
 })
 
 
 app.listen(3000, () => {
-    console.log("Port 3000 and Server Action")
+    console.log("포트 3000에서 서버가 작동되고 있습니다.")
 });
 
 app.use("/api/user", userRoutes);

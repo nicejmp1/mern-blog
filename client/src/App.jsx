@@ -7,6 +7,9 @@ import Home from "./pages/Home"
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import Dashboard from "./pages/Dashboard";
+import CreatePost from "./pages/CreatePost";
+import UpdatePost from "./pages/UpdatePost";
+import PostPage from "./pages/PostPage";
 
 export default function App() {
   return (
@@ -19,6 +22,9 @@ export default function App() {
         <Route element={<PrivateRoute />}>
           <Route path="/dashboard" element={<Dashboard />} />
         </Route>
+        <Route path="/create-post" element={<CreatePost />}></Route>
+        <Route path="/update-post" element={<UpdatePost />}></Route>
+        <Route path="/post/:postSlug" element={<PostPage />}></Route>
       </Routes>
       <Footer />
     </BrowserRouter>

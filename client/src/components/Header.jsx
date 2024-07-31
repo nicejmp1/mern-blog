@@ -12,7 +12,7 @@ export default function Header() {
     const { theme } = useSelector((state) => state.theme);
 
     return (
-        <header id="header" className="flex justify-between max-w-7xl mx-auto items-center py-4 px-4 border-b font-ibm font-medium">
+        <header id="header" className="flex justify-between max-w-screen-2xl mx-auto items-center py-4 px-4 border-b font-ibm font-medium">
             <h1>
                 <Link to={"/"}>
                     My Blog

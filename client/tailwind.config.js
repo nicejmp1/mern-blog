@@ -7,8 +7,11 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        'ibm' : [
+        'ibm': [
           '"IBM Plex Sans KR"'
+        ],
+        'NanumSquareNeo': [
+          'NanumSquareNeo'
         ]
       }
     },

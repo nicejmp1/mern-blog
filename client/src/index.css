@@ -72,7 +72,7 @@
 
 
 .container {
-    @apply flex max-w-7xl mx-auto
+    @apply flex max-w-screen-2xl mx-auto
 }
 
 .btn_icon {

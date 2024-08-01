@@ -6,9 +6,13 @@ import { FaClipboardList } from "react-icons/fa";
 import { IoChatboxEllipses } from "react-icons/io5";
 import { IoIosLogOut } from "react-icons/io";
 
+import { useSelector } from "react-redux"
+
 export default function DashSidebar() {
     const location = useLocation();
     const [tab, setTab] = useState("");
+
+    const { currentUser } = useSelector((state) => state.user);
 
     useEffect(() => {
         const urlParams = new URLSearchParams(location.search);
@@ -29,20 +33,27 @@ export default function DashSidebar() {
                         <span className="pl-1">Profile</span>
                     </Link>
                 </li>
+                {currentUser.isAdmin && (
+                    <li className="">
+                        <Link to={'/dashboard?tab=users'} className="flex items-center gap-1">
+                            <FaUserCircle className="text-xl" />
+                            <span className="pl-1">users</span>
+                        </Link>
+                    </li>
+                )}
+
+                {currentUser.isAdmin && (
+                    <li className="">
+                        <Link to={'/dashboard?tab=posts'} className="flex items-center gap-1">
+                            <FaClipboardList className="text-xl" />
+                            <span className="pl-1">posts</span>
+                        </Link>
+                    </li>
+                )}
+
+
                 <li className="">
-                    <Link to={'/'} className="flex items-center gap-1">
-                        <FaUserCircle className="text-xl" />
-                        <span className="pl-1">users</span>
-                    </Link>
-                </li>
-                <li className="">
-                    <Link to={'/'} className="flex items-center gap-1">
-                        <FaClipboardList className="text-xl" />
-                        <span className="pl-1">posts</span>
-                    </Link>
-                </li>
-                <li className="">
-                    <Link to={'/'} className="flex items-center gap-1">
+                    <Link to={'/dashboard?tab=comments'} className="flex items-center gap-1">
                         <IoChatboxEllipses className="text-xl " />
                         <span className="pl-1">comments</span>
                     </Link>

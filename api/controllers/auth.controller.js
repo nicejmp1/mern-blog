@@ -63,7 +63,7 @@ export const signIn = async (req, res, next) => {
         // 토큰 발행
         const token = jwt.sign(
             {
-                id: validUser._id
+                id: validUser._id, isAdmin: validUser.isAdmin
             },
             process.env.JWT_SECRET
         );
@@ -91,7 +91,7 @@ export const google = async (req, res, next) => {
             // 기존 사용자가 있을 경우 JWT 토큰 생성
             const token = jwt.sign(
                 {
-                    id: user._id
+                    id: user._id, isAdmin: user.isAdmin
                 },
                 process.env.JWT_SECRET
             );
@@ -124,7 +124,7 @@ export const google = async (req, res, next) => {
             // 토큰 발행
             const token = jwt.sign(
                 {
-                    id: newUser._id
+                    id: newUser._id, isAdmin: newUser.isAdmin
                 },
                 process.env.JWT_SECRET
             );

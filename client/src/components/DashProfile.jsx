@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom"
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/storage";
 import { app } from "../firebase";
 import { CircularProgressbarWithChildren } from 'react-circular-progressbar';
@@ -241,6 +242,18 @@ export default function DashProfile() {
                         <button type="submit" className="p-5 px-10 mt-5 text-white rounded-full bg-amber-500 w-full">
                             수정하기
                         </button>
+
+                        {currentUser.isAdmin && (
+                            <Link to={"/create-post"}>
+                                <button
+                                    type="button"
+                                    className="p-5 px-10 mt-5 text-white rounded-full bg-red-500 w-full"
+                                >
+                                    글쓰기
+                                </button>
+                            </Link>
+                        )}
+
                         <div className="mt-4 text-red-500 flex justify-between">
                             <span className="cursor-pointer hover:underline underline-offset-4 hover:text-orange-400" onClick={() => setShowModal(true)}>계정삭제</span>
                             <span className="cursor-pointer hover:underline underline-offset-4 hover:text-orange-400" onClick={handleSignout}>로그아웃</span>

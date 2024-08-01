@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header"
 import Footer from "./components/Footer"
 import PrivateRoute from "./components/PrivateRoute"
+import OnlyAdminPrivateRoute from "./components/OnlyAdminPrivateRoute"
 
 import Home from "./pages/Home"
 import SignUp from "./pages/SignUp";
@@ -22,8 +23,10 @@ export default function App() {
         <Route element={<PrivateRoute />}>
           <Route path="/dashboard" element={<Dashboard />} />
         </Route>
-        <Route path="/create-post" element={<CreatePost />}></Route>
-        <Route path="/update-post" element={<UpdatePost />}></Route>
+        <Route element={<OnlyAdminPrivateRoute />}>
+          <Route path="/create-post" element={<CreatePost />} />
+          <Route path="/update-post/:postId" element={<UpdatePost />} />
+        </Route>
         <Route path="/post/:postSlug" element={<PostPage />}></Route>
       </Routes>
       <Footer />

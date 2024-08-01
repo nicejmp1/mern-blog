@@ -5,11 +5,18 @@ import { FaSun } from "react-icons/fa"
 import { MdOutlineDarkMode } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleTheme } from "../redux/theme/themeSlice"
+import { useState } from "react";
 
 export default function Header() {
     const dispatch = useDispatch();
     const { currentUser } = useSelector((state) => state.user);
     const { theme } = useSelector((state) => state.theme);
+
+    const [isDropdownVisible, setDropdownVisible] = useState(false);
+
+    const toggleDropdown = () => {
+        setDropdownVisible(!isDropdownVisible);
+    };
 
     return (
         <header id="header" className="flex justify-between max-w-screen-2xl mx-auto items-center py-4 px-4 border-b font-ibm font-medium">
@@ -52,13 +59,16 @@ export default function Header() {
                         <img
                             className="w-10 rounded-full h-10 cursor-pointer"
                             src={currentUser.profilePicture}
+                            onClick={toggleDropdown}
                         />
-                        <div className="absolute flex flex-col p-4 border top-20 w-60">
-                            <span>{currentUser.username}</span>
-                            <span>{currentUser.email}</span>
-                            <Link to={'/dashboard?tab=profile'}>profile</Link>
-                            <button className="text-left">Logout</button>
-                        </div>
+                        {isDropdownVisible && (
+                            <div className="absolute flex flex-col p-4 border top-20 w-60">
+                                <span>{currentUser.username}</span>
+                                <span>{currentUser.email}</span>
+                                <Link to={'/dashboard?tab=profile'}>profile</Link>
+                                <button className="text-left">Logout</button>
+                            </div>
+                        )}
                     </>
                 ) : (
                     <Link to={"/signin"}>Login</Link>

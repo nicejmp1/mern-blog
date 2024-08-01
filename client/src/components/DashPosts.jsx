@@ -121,7 +121,7 @@ export default function DashPosts() {
                     <div className="w-1/3 h-1/3 bg-white absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 ">
                         <h3 className="">게시글을 삭제 하시겠습니까?</h3>
                         <button className="bg-red-500 px-4 text-white" onClick={handleDeletePost}>네</button>
-                        <button className="bg-blue-500 px-4 text-white">아니요</button>
+                        <button className="bg-blue-500 px-4 text-white" onClick={() => setShowModal(false)}>아니요</button>
                     </div>
                 </div>
             )}

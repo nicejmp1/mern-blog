@@ -42,7 +42,7 @@ export const getposts = async (req, res, next) => {
             ...(req.query.userId && { userId: req.query.userId }),  // userId가 쿼리에 있는 경우 조건에 추가
             ...(req.query.category && { category: req.query.category }),  // category 쿼리에 있는 경우 조건에 추가
             ...(req.query.slug && { slug: req.query.slug }),  // slug 쿼리에 있는 경우 조건에 추가
-            ...(req.query.postId && { postId: req.query.postId }),  // slug 쿼리에 있는 경우 조건에 추가
+            ...(req.query.postId && { _id: req.query.postId }),  // slug 쿼리에 있는 경우 조건에 추가
             ...(req.query.searchTerm && {
                 $or: [
                     { title: { $regex: req.query.searchTerm, $options: "i" } },  // 제목에서 대소문자 구분없이 검색
@@ -94,7 +94,8 @@ export const updatepost = async (req, res, next) => {
     }
 
     try {
-        const updatePost = await Post.findByIdAndUpdate(req.params.userId,
+        const updatePost = await Post.findByIdAndUpdate(
+            req.params.postId,
             {
                 $set: {
                     title: req.body.title,
@@ -111,3 +112,4 @@ export const updatepost = async (req, res, next) => {
         next(error);
     }
 }
+

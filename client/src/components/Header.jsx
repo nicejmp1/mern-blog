@@ -62,7 +62,7 @@ export default function Header() {
                             onClick={toggleDropdown}
                         />
                         {isDropdownVisible && (
-                            <div className="absolute flex flex-col p-4 border top-20 w-60">
+                            <div className="absolute flex flex-col p-4 border top-20 w-60 z-50 bg-white">
                                 <span>{currentUser.username}</span>
                                 <span>{currentUser.email}</span>
                                 <Link to={'/dashboard?tab=profile'}>profile</Link>

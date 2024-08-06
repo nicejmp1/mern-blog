@@ -17,6 +17,9 @@ export default function DashPosts() {
 
                 if (res.ok) {
                     setUserPosts(data.posts);
+                    if (data.posts.length < 9) {
+                        setShowMore(false);
+                    }
                 }
 
             } catch (error) {

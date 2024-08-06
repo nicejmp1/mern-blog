@@ -34,7 +34,7 @@ export default function DashSidebar() {
                     </Link>
                 </li>
                 {currentUser.isAdmin && (
-                    <li className="">
+                    <li className={`users ${tab === "users" ? "text-red-500" : ""}`}>
                         <Link to={'/dashboard?tab=users'} className="flex items-center gap-1">
                             <FaUserCircle className="text-xl" />
                             <span className="pl-1">users</span>
@@ -43,7 +43,7 @@ export default function DashSidebar() {
                 )}
 
                 {currentUser.isAdmin && (
-                    <li className="">
+                    <li className={`posts ${tab === "posts" ? "text-red-500" : ""}`}>
                         <Link to={'/dashboard?tab=posts'} className="flex items-center gap-1">
                             <FaClipboardList className="text-xl" />
                             <span className="pl-1">posts</span>

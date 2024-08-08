@@ -6,6 +6,7 @@ import commentRoutes from "./routes/comment.route.js"
 import userRoutes from "./routes/user.route.js";
 import authRoutes from "./routes/auth.route.js";
 import postRoutes from "./routes/post.route.js";
+import path from "path";
 
 dotenv.config();
 
@@ -21,6 +22,8 @@ mongoose.connect(process.env.MONGO_DB_URL).then(() => {
     console.log(err);
 })
 
+const __dirname = path.resolve();
+
 
 app.listen(3000, () => {
     console.log("포트 3000에서 서버가 작동되고 있습니다.")
@@ -30,6 +33,10 @@ app.use("/api/user", userRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/post", postRoutes);
 app.use("/api/comment", commentRoutes)
+
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+});
 
 //에러
 app.use((err, req, res, next) => {

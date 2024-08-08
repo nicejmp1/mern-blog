@@ -94,18 +94,18 @@ export default function DashUsers() {
                                             alt={user.username}
                                             className="object-cover w-10 h-10 m-auto rounded-full bg-black" />
                                     </td>
-                                    <td className="p-2 border">
+                                    <td className="p-2 border text-center">
                                         {user.userId}
                                     </td>
-                                    <td className="p-2 border">
+                                    <td className="p-2 border text-center">
                                         {user.username}
                                     </td>
-                                    <td className="p-2 border">{user.email}</td>
-                                    <td className="p-2 border">
+                                    <td className="p-2 border text-center">{user.email}</td>
+                                    <td className="p-2 border ">
                                         {user.isAdmin ? (
-                                            <FaCheck className="text-green-500" />
+                                            <FaCheck className="text-green-500 mx-auto" />
                                         ) : (
-                                            <FaTimes className="text-red-500" />
+                                            <FaTimes className="text-red-500 mx-auto" />
                                         )}
                                     </td>
                                     <td className="p-2 border uppercase hover:underline underline-offset-4 text-red-500 text-center">

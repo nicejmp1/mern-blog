@@ -9,6 +9,8 @@ export default function DashPosts() {
     const [showModal, setShowModal] = useState(false);
     const [postIdToDelete, setPostIdToDelete] = useState("");
 
+    console.log(userPosts)
+
     useEffect(() => {
         const fetchPosts = async () => {
             try {
@@ -71,7 +73,7 @@ export default function DashPosts() {
             {currentUser.isAdmin && userPosts.length > 0 ? (
                 <>
                     <table className="w-full">
-                        <caption className="mb-5 text-3xl mt-7">Data</caption>
+                        <caption className="mb-5 text-3xl mt-7">Create Post</caption>
                         <thead>
                             <tr>
                                 <th className="p-2 border bg-slate-300">Date Updated</th>
